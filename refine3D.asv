@@ -1,0 +1,16 @@
+function cloud = refine3D(data, K)
+for imLoop = 1:length(data)
+   
+   if i == 1
+       [X Proj(:,:,i) Proj(:,:,i+1)] = getpoint3D_real(cor(i).left, cor(i).right, K);
+       result.id = X.id;
+       result.point = X.point;
+   else
+       [x Xw] = findcorres(cor(i).right, result);
+       P = compute_p( x, Xw, K );
+       [X Proj(:,:,i) Proj(:,:,i+1)] = getpoint3D_real(cor(i).left, cor(i).right, K, Proj(:,:,i), P);
+       result = updateCloud(result, X);
+   end
+   Xcor(i) = X;
+end
+cloud = buildCloud(Xcor);

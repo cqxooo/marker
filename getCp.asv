@@ -1,0 +1,15 @@
+function cps = getCp(C1, C2, C3)
+A = [];
+[~, v1, v2] = getEigenVectors(data(imLoop).cmat(i).C1, data(imLoop).cmat(i).C2);
+A = [A v1 v2];
+lh = -sign(l(3))*l/norm(l(1:2));
+[cp1, cp2] = getIntersectLineConic(lh, C1);
+[cp3, cp4] = getIntersectLineConic(lh, C2);
+a = (real(cp1)+real(cp3))/2;
+if sign(imag(cp1(1))) == sign(imag(cp3(1))) 
+    b = (imag(cp1)+imag(cp3))/2;
+else
+            b = (imag(cp1)-imag(cp3))/2;
+        end
+        c = a + b*-1j;
+        cp = [c conj(c)];
